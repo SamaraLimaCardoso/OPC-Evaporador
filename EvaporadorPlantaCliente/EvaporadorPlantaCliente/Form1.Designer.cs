@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.sc001 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -68,6 +70,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -84,7 +87,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.LT001T1);
             this.groupBox1.Controls.Add(this.SC001T);
-            this.groupBox1.Location = new System.Drawing.Point(158, 143);
+            this.groupBox1.Location = new System.Drawing.Point(121, 132);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(609, 50);
             this.groupBox1.TabIndex = 1;
@@ -124,6 +127,7 @@
             this.LT001T1.Name = "LT001T1";
             this.LT001T1.Size = new System.Drawing.Size(100, 20);
             this.LT001T1.TabIndex = 1;
+            this.LT001T1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SC001T
             // 
@@ -131,6 +135,8 @@
             this.SC001T.Name = "SC001T";
             this.SC001T.Size = new System.Drawing.Size(100, 20);
             this.SC001T.TabIndex = 0;
+            this.SC001T.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SC001T.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SC001T_KeyPress);
             // 
             // groupBox2
             // 
@@ -139,7 +145,7 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.LT001T2);
             this.groupBox2.Controls.Add(this.SC002T);
-            this.groupBox2.Location = new System.Drawing.Point(158, 199);
+            this.groupBox2.Location = new System.Drawing.Point(121, 188);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(609, 50);
             this.groupBox2.TabIndex = 4;
@@ -179,6 +185,7 @@
             this.LT001T2.Name = "LT001T2";
             this.LT001T2.Size = new System.Drawing.Size(100, 20);
             this.LT001T2.TabIndex = 1;
+            this.LT001T2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SC002T
             // 
@@ -186,6 +193,8 @@
             this.SC002T.Name = "SC002T";
             this.SC002T.Size = new System.Drawing.Size(100, 20);
             this.SC002T.TabIndex = 0;
+            this.SC002T.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SC002T.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SC002T_KeyPress);
             // 
             // groupBox3
             // 
@@ -194,7 +203,7 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.LT001T3);
             this.groupBox3.Controls.Add(this.SC003T);
-            this.groupBox3.Location = new System.Drawing.Point(158, 255);
+            this.groupBox3.Location = new System.Drawing.Point(121, 244);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(609, 50);
             this.groupBox3.TabIndex = 4;
@@ -234,6 +243,7 @@
             this.LT001T3.Name = "LT001T3";
             this.LT001T3.Size = new System.Drawing.Size(100, 20);
             this.LT001T3.TabIndex = 1;
+            this.LT001T3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SC003T
             // 
@@ -241,6 +251,8 @@
             this.SC003T.Name = "SC003T";
             this.SC003T.Size = new System.Drawing.Size(100, 20);
             this.SC003T.TabIndex = 0;
+            this.SC003T.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SC003T.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SC003T_KeyPress);
             // 
             // groupBox4
             // 
@@ -249,7 +261,7 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.LT001T4);
             this.groupBox4.Controls.Add(this.FV001T);
-            this.groupBox4.Location = new System.Drawing.Point(158, 311);
+            this.groupBox4.Location = new System.Drawing.Point(121, 300);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(609, 50);
             this.groupBox4.TabIndex = 5;
@@ -289,6 +301,7 @@
             this.LT001T4.Name = "LT001T4";
             this.LT001T4.Size = new System.Drawing.Size(100, 20);
             this.LT001T4.TabIndex = 1;
+            this.LT001T4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FV001T
             // 
@@ -296,6 +309,8 @@
             this.FV001T.Name = "FV001T";
             this.FV001T.Size = new System.Drawing.Size(100, 20);
             this.FV001T.TabIndex = 0;
+            this.FV001T.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.FV001T.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FV001T_KeyPress);
             // 
             // groupBox5
             // 
@@ -304,7 +319,7 @@
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.LT001T5);
             this.groupBox5.Controls.Add(this.FV002T);
-            this.groupBox5.Location = new System.Drawing.Point(158, 367);
+            this.groupBox5.Location = new System.Drawing.Point(121, 356);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(609, 50);
             this.groupBox5.TabIndex = 4;
@@ -344,6 +359,7 @@
             this.LT001T5.Name = "LT001T5";
             this.LT001T5.Size = new System.Drawing.Size(100, 20);
             this.LT001T5.TabIndex = 1;
+            this.LT001T5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FV002T
             // 
@@ -351,6 +367,8 @@
             this.FV002T.Name = "FV002T";
             this.FV002T.Size = new System.Drawing.Size(100, 20);
             this.FV002T.TabIndex = 0;
+            this.FV002T.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.FV002T.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FV002T_KeyPress);
             // 
             // groupBox6
             // 
@@ -359,7 +377,7 @@
             this.groupBox6.Controls.Add(this.label12);
             this.groupBox6.Controls.Add(this.TT0011);
             this.groupBox6.Controls.Add(this.TV001T);
-            this.groupBox6.Location = new System.Drawing.Point(158, 423);
+            this.groupBox6.Location = new System.Drawing.Point(121, 412);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(609, 50);
             this.groupBox6.TabIndex = 4;
@@ -399,6 +417,7 @@
             this.TT0011.Name = "TT0011";
             this.TT0011.Size = new System.Drawing.Size(100, 20);
             this.TT0011.TabIndex = 1;
+            this.TT0011.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TV001T
             // 
@@ -406,25 +425,28 @@
             this.TV001T.Name = "TV001T";
             this.TV001T.Size = new System.Drawing.Size(100, 20);
             this.TV001T.TabIndex = 0;
+            this.TV001T.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TV001T.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TV001T_KeyPress);
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(224, 78);
+            this.pictureBox1.Size = new System.Drawing.Size(269, 55);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(158, 117);
+            this.textBox1.Location = new System.Drawing.Point(121, 106);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(506, 20);
             this.textBox1.TabIndex = 7;
             // 
             // buttonConnect
             // 
-            this.buttonConnect.Location = new System.Drawing.Point(670, 117);
+            this.buttonConnect.Location = new System.Drawing.Point(633, 106);
             this.buttonConnect.Name = "buttonConnect";
             this.buttonConnect.Size = new System.Drawing.Size(97, 23);
             this.buttonConnect.TabIndex = 8;
@@ -434,17 +456,21 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(155, 101);
+            this.label13.Location = new System.Drawing.Point(118, 90);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 13);
             this.label13.TabIndex = 9;
             this.label13.Text = "EndPoint:";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 476);
+            this.ClientSize = new System.Drawing.Size(859, 493);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.textBox1);
@@ -455,6 +481,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "EvaporadorPlantaCliente";
             this.groupBox1.ResumeLayout(false);
@@ -516,6 +543,7 @@
         private System.Windows.Forms.Label fv001;
         private System.Windows.Forms.Label fv002;
         private System.Windows.Forms.Label tv001;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

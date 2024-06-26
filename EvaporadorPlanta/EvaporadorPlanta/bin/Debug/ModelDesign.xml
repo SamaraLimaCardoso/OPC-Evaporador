@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<opc:ModelDesign
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:opc="http://opcfoundation.org/UA/ModelDesign.xsd"
+xmlns:ua="http://opcfoundation.org/UA/"
+xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
+xmlns="http://opcfoundation.org/EvaporadorPlanta"
+TargetNamespace="http://opcfoundation.org/EvaporadorPlanta"
+>
+ <!--uma maneira de associar o design do modulo aos arquivos de definição do xml  
+  *opc* especificar um namesoace para o model design, acrescenta as tags opc -->
+
+  <!-- Adicionar a definição de namespace dentro do modelo de informação -->
+  <opc:Namespaces>
+    <opc:Namespace Name="OpcUa" Prefix="Opc.Ua" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd">http://opcfoundation.org/UA/</opc:Namespace>
+    <opc:Namespace Name="EvaporadorPlanta" Prefix="EvaporadorPlanta">http://opcfoundation.org/EvaporadorPlanta</opc:Namespace>
+  </opc:Namespaces>
+
+  <!--Defina tipos de base genéricos para os diversos controladores, sensores e atuadores usados ​​no modelo.--> EvaporadorPlanta
+    <opc:ObjectType SymbolicName="GenericoSensorType" BaseType="ua:BaseObjectType">
+    <opc:Description>Um sensor generico da malha.</opc:Description>
+    <opc:Children>
+      <opc:Variable SymbolicName="Output" DataType="ua:Double" ValueRank="Scalar" TypeDefinition="ua:AnalogItemType" AccessLevel="ReadWrite"/>
+      <opc:Property SymbolicName="Unidade" DataType="ua:String" ValueRank="Scalar"  AccessLevel="ReadWrite" />
+    </opc:Children>
+    </opc:ObjectType>
+
+  	<opc:ObjectType SymbolicName="GenericoAtuadorType" BaseType="ua:BaseObjectType">
+		<opc:Description>Um atuador generico da malha.</opc:Description>
+		<opc:Children>
+			<opc:Variable SymbolicName="Input" DataType="ua:Double" ValueRank="Scalar" TypeDefinition="ua:AnalogItemType" AccessLevel="ReadWrite" />
+            <opc:Variable SymbolicName="Output" DataType="ua:Double" ValueRank="Scalar" TypeDefinition="ua:AnalogItemType" AccessLevel="ReadWrite" />
+		</opc:Children>
+	</opc:ObjectType>
+
+    <opc:ObjectType SymbolicName="GenericoInvFreqType" BaseType="ua:BaseObjectType">
+		<opc:Description>Um inverso de frequencia generico</opc:Description>
+		<opc:Children>
+			<opc:Variable SymbolicName="pwm" DataType="ua:Double" ValueRank="Scalar" TypeDefinition="ua:AnalogItemType" AccessLevel="ReadWrite" />
+		</opc:Children>
+	</opc:ObjectType>
+
+
+    <!--Defina tipos concretos para os diversos controladores, sensores e atuadores utilizados no modelo.-->
+      <opc:ObjectType SymbolicName="IndicadorNivelType" BaseType="GenericoSensorType">
+    <opc:Description>Um sensor que informa o nível de agua no tanque.</opc:Description>
+  </opc:ObjectType>
+
+  <opc:ObjectType SymbolicName="IndicadorTempType" BaseType="GenericoSensorType">
+    <opc:Description>Um sensor que informa a temperatura no tanque.</opc:Description>
+  </opc:ObjectType>
+
+  <opc:ObjectType SymbolicName="MedidorPressaoType" BaseType="GenericoSensorType">
+    <opc:Description>Um sensor que informa a pressao no tanque.</opc:Description>
+  </opc:ObjectType>
+
+  <opc:ObjectType SymbolicName="ValvulaType" BaseType="GenericoAtuadorType">
+    <opc:Description>Um atuador que controla o fluxo do material.</opc:Description>
+  </opc:ObjectType>
+
+  <opc:ObjectType SymbolicName="ResistenciaType" BaseType="GenericoAtuadorType">
+    <opc:Description>Um atuador que controla a temperatura do material.</opc:Description>
+  </opc:ObjectType>
+
+  <opc:ObjectType SymbolicName="InvMotorType" BaseType="GenericoInvFreqType">
+    <opc:Description>Um inversor para controlar a velocidade do motor</opc:Description>
+  </opc:ObjectType>
+
+<!--Defina tipos concretos para os componentes contidos no Evaporador.
+ Esses tipos de camada intermediária podem ser omitidos e declarados como pastas dentro do tipo de tanque.
+ No entanto, fazer isso não produziria uma classe fortemente tipada.
+ -->
+    <opc:ObjectType SymbolicName="Tanque1Type" BaseType="ua:FolderType">
+		<opc:Children>
+			<opc:Object SymbolicName="TT003" TypeDefinition="IndicadorTempType" SupportsEvents="true">
+				<opc:BrowseName>TT003</opc:BrowseName>
+			</opc:Object>
+		</opc:Children>
+		<opc:References>
+			<opc:Reference>
+				<opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+				<opc:TargetId>Tanque1Type_TT003</opc:TargetId>
+			</opc:Reference>
+		</opc:References>
+	</opc:ObjectType>
+
+    <opc:ObjectType SymbolicName="Tanque2Type" BaseType="ua:FolderType">
+		<opc:Children>
+			<opc:Object SymbolicName="TT001" TypeDefinition="IndicadorTempType" SupportsEvents="true">
+				<opc:BrowseName>TT001</opc:BrowseName>
+			</opc:Object>
+			<opc:Object SymbolicName="TV001" TypeDefinition="ResistenciaType" SupportsEvents="true">
+				<opc:BrowseName>TV001</opc:BrowseName>
+			</opc:Object>
+		</opc:Children>
+		<opc:References>
+			<opc:Reference>
+				<opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+				<opc:TargetId>Tanque2Type_TT001</opc:TargetId>
+			</opc:Reference>
+		</opc:References>
+	</opc:ObjectType>
+
+    <opc:ObjectType SymbolicName="Tanque3Type" BaseType="ua:FolderType">
+		<opc:Children>
+			<opc:Object SymbolicName="PT001" TypeDefinition="MedidorPressaoType" SupportsEvents="true">
+				<opc:BrowseName>PT001</opc:BrowseName>
+			</opc:Object>
+			<opc:Object SymbolicName="LT001" TypeDefinition="IndicadorNivelType" SupportsEvents="true">
+				<opc:BrowseName>LT001</opc:BrowseName>
+			</opc:Object>
+		</opc:Children>
+		<opc:References>
+			<opc:Reference>
+				<opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+				<opc:TargetId>Tanque3Type_LT001</opc:TargetId>
+			</opc:Reference>
+		</opc:References>
+	</opc:ObjectType>
+
+	<opc:ObjectType SymbolicName="T1paraT2Type" BaseType="ua:FolderType">
+		<opc:Children>
+			<opc:Object SymbolicName="SC001" TypeDefinition="InvMotorType" SupportsEvents="true">
+				<opc:BrowseName>SC001</opc:BrowseName>
+			</opc:Object>
+		</opc:Children>
+		<opc:References>
+			<opc:Reference>
+				<opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+				<opc:TargetId>T1paraT2Type_SC001</opc:TargetId>
+			</opc:Reference>
+		</opc:References>
+	</opc:ObjectType>
+
+	<opc:ObjectType SymbolicName="T1paraT3Type" BaseType="ua:FolderType">
+		<opc:Children>
+			<opc:Object SymbolicName="SC003" TypeDefinition="InvMotorType" SupportsEvents="true">
+				<opc:BrowseName>SC003</opc:BrowseName>
+			</opc:Object>
+		</opc:Children>
+		<opc:References>
+			<opc:Reference>
+				<opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+				<opc:TargetId>T1paraT3Type_SC003</opc:TargetId>
+			</opc:Reference>
+		</opc:References>
+	</opc:ObjectType>
+
+    <opc:ObjectType SymbolicName="T2paraCxType" BaseType="ua:FolderType">
+		<opc:Children>
+			<opc:Object SymbolicName="FV002" TypeDefinition="ValvulaType" SupportsEvents="true">
+				<opc:BrowseName>FV002</opc:BrowseName>
+			</opc:Object>
+		</opc:Children>
+		<opc:References>
+			<opc:Reference>
+				<opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+				<opc:TargetId>T2paraCxType_FV002</opc:TargetId>
+			</opc:Reference>
+		</opc:References>
+	</opc:ObjectType>
+
+	<opc:ObjectType SymbolicName="T3paraCxType" BaseType="ua:FolderType">
+		<opc:Children>
+			<opc:Object SymbolicName="FV001" TypeDefinition="ValvulaType" SupportsEvents="true">
+				<opc:BrowseName>FV001</opc:BrowseName>
+			</opc:Object>
+            <opc:Object SymbolicName="SC002" TypeDefinition="InvMotorType" SupportsEvents="true">
+				<opc:BrowseName>SC002</opc:BrowseName>
+			</opc:Object>
+            <opc:Object SymbolicName="TT002" TypeDefinition="IndicadorTempType" SupportsEvents="true">
+				<opc:BrowseName>TT002</opc:BrowseName>
+			</opc:Object>
+		</opc:Children>
+		<opc:References>
+			<opc:Reference>
+				<opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+				<opc:TargetId>T3paraCxType_FV001</opc:TargetId>
+			</opc:Reference>
+		</opc:References>
+	</opc:ObjectType>
+
+<!-- Declaraçao do tipo Planta do Evaporador -->
+<opc:ObjectType SymbolicName="EvaporadorPlantaType" BaseType="ua:BaseObjectType" SupportsEvents="true">
+    <opc:Description>Planta de Separação de Materiais</opc:Description>
+    <opc:Children>
+
+        <opc:Object SymbolicName="Tanque1" TypeDefinition="Tanque1Type" SupportsEvents="true">
+            <opc:BrowseName>Tanque001</opc:BrowseName>
+            <opc:Children>
+                <opc:Object SymbolicName="TT003">
+						<opc:Children>
+							<opc:Variable SymbolicName="Output" />
+						</opc:Children>
+                        <opc:Children>
+							<opc:Variable SymbolicName="Unidade" />
+						</opc:Children>
+					</opc:Object>
+            </opc:Children>
+        </opc:Object>
+
+        <opc:Object SymbolicName="Tanque2" TypeDefinition="Tanque2Type" SupportsEvents="true">
+            <opc:BrowseName>Tanque002</opc:BrowseName>
+            <opc:Children>
+                <opc:Object SymbolicName="TT001">
+                    <opc:Children>
+						<opc:Variable SymbolicName="Output" />
+					</opc:Children>
+                    <opc:Children>
+						<opc:Variable SymbolicName="Unidade" />
+					</opc:Children>
+                </opc:Object>
+                <opc:Object SymbolicName="TV001">
+                    <opc:Children>
+						<opc:Variable SymbolicName="Input" />
+					</opc:Children>
+                    <opc:Children>
+						<opc:Variable SymbolicName="Output" />
+					</opc:Children>
+                </opc:Object>
+            </opc:Children>
+        </opc:Object>
+
+        <opc:Object SymbolicName="Tanque3" TypeDefinition="Tanque3Type" SupportsEvents="true">
+            <opc:BrowseName>Tanque003</opc:BrowseName>
+            <opc:Children>
+                <opc:Object SymbolicName="PT001">
+                    <opc:Children>
+						<opc:Variable SymbolicName="Output" />
+					</opc:Children>
+                    <opc:Children>
+						<opc:Variable SymbolicName="Unidade" />
+					</opc:Children>
+                </opc:Object>
+                <opc:Object SymbolicName="LT001">
+                    <opc:Children>
+						<opc:Variable SymbolicName="Output" />
+					</opc:Children>
+                    <opc:Children>
+						<opc:Variable SymbolicName="Unidade" />
+					</opc:Children>
+                </opc:Object>
+            </opc:Children>
+        </opc:Object>
+
+        <opc:Object SymbolicName="T1paraT2" TypeDefinition="T1paraT2Type" SupportsEvents="true">
+            <opc:BrowseName>T1paraT2X001</opc:BrowseName>
+            <opc:Children>
+                <opc:Object SymbolicName="SC001">
+                    <opc:Children>
+						<opc:Variable SymbolicName="pwm"/>
+					</opc:Children>
+                </opc:Object>
+            </opc:Children>
+        </opc:Object>
+
+		<opc:Object SymbolicName="T1paraT3" TypeDefinition="T1paraT3Type" SupportsEvents="true">
+			<opc:BrowseName>T1paraT3X001</opc:BrowseName>
+			<opc:Children>
+				<opc:Object SymbolicName="SC003">
+					<opc:Children>
+						<opc:Variable SymbolicName="pwm"/>
+					</opc:Children>
+				</opc:Object>
+			</opc:Children>
+		</opc:Object>
+
+        <opc:Object SymbolicName="T2paraCx" TypeDefinition="T2paraCxType" SupportsEvents="true">
+            <opc:BrowseName>T2paraCxX001</opc:BrowseName>
+            <opc:Children>
+                <opc:Object SymbolicName="FV002">
+                    <opc:Children>
+						<opc:Variable SymbolicName="Input" />
+					</opc:Children>
+                    <opc:Children>
+						<opc:Variable SymbolicName="Output" />
+					</opc:Children>
+                </opc:Object>
+            </opc:Children>
+        </opc:Object>
+
+        <opc:Object SymbolicName="T3paraCx" TypeDefinition="T3paraCxType" SupportsEvents="true">
+            <opc:BrowseName>T3paraCxX001</opc:BrowseName>
+            <opc:Children>
+                <opc:Object SymbolicName="FV001">
+                    <opc:Children>
+						<opc:Variable SymbolicName="Input" />
+					</opc:Children>
+                    <opc:Children>
+						<opc:Variable SymbolicName="Output" />
+					</opc:Children>
+                </opc:Object>
+                <opc:Object SymbolicName="SC002">
+                    <opc:Children>
+						<opc:Variable SymbolicName="pwm"/>
+					</opc:Children>
+                </opc:Object>
+                <opc:Object SymbolicName="TT002">
+                    <opc:Children>
+						<opc:Variable SymbolicName="Output" />
+					</opc:Children>
+                    <opc:Children>
+						<opc:Variable SymbolicName="Unidade" />
+					</opc:Children>
+                </opc:Object>
+            </opc:Children>
+        </opc:Object>
+    </opc:Children>
+
+    <opc:References>
+        <opc:Reference>
+            <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+            <opc:TargetId>EvaporadorPlantaType_Tanque1</opc:TargetId>
+        </opc:Reference>
+        <opc:Reference>
+            <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+            <opc:TargetId>EvaporadorPlantaType_Tanque2</opc:TargetId>
+        </opc:Reference>  
+        <opc:Reference>
+            <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+            <opc:TargetId>EvaporadorPlantaType_Tanque3</opc:TargetId>
+        </opc:Reference>
+        <opc:Reference>
+            <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+            <opc:TargetId>EvaporadorPlantaType_T1paraT2</opc:TargetId>
+        </opc:Reference>
+		<opc:Reference>
+			<opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+			<opc:TargetId>EvaporadorPlantaType_T1paraT3</opc:TargetId>
+		</opc:Reference>
+        <opc:Reference>
+            <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+            <opc:TargetId>EvaporadorPlantaType_T2paraCx</opc:TargetId>
+        </opc:Reference>  
+        <opc:Reference>
+            <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+            <opc:TargetId>EvaporadorPlantaType_T3paraCx</opc:TargetId>
+        </opc:Reference>
+    </opc:References>
+
+</opc:ObjectType>
+
+<!-- Intanciação da Planta do Evaporador -->
+    <opc:Object SymbolicName="PlantaEvaporador1" TypeDefinition="EvaporadorPlantaType" SupportsEvents="true">
+		<opc:BrowseName>Planta Evaporador #1</opc:BrowseName>
+		<opc:Children>
+			<opc:Object SymbolicName="Tanque1" TypeDefinition="Tanque1Type" SupportsEvents="true">
+				<opc:DisplayName>Tanque001</opc:DisplayName>
+			</opc:Object>
+            <opc:Object SymbolicName="Tanque2" TypeDefinition="Tanque2Type" SupportsEvents="true">
+				<opc:DisplayName>Tanque002</opc:DisplayName>
+			</opc:Object>
+            <opc:Object SymbolicName="Tanque3" TypeDefinition="Tanque3Type" SupportsEvents="true">
+				<opc:DisplayName>Tanque003</opc:DisplayName>
+			</opc:Object>
+            <opc:Object SymbolicName="T1paraT2" TypeDefinition="T1paraT2Type" SupportsEvents="true">
+				<opc:DisplayName>T1paraT2X001</opc:DisplayName>
+			</opc:Object>
+			<opc:Object SymbolicName="T1paraT3" TypeDefinition="T1paraT3Type" SupportsEvents="true">
+				<opc:DisplayName>T1paraT3X001</opc:DisplayName>
+			</opc:Object>
+            <opc:Object SymbolicName="T2paraCx" TypeDefinition="T2paraCxType" SupportsEvents="true">
+				<opc:DisplayName>T2paraCxX001</opc:DisplayName>
+			</opc:Object>
+            <opc:Object SymbolicName="T3paraCx" TypeDefinition="T3paraCxType" SupportsEvents="true">
+				<opc:DisplayName>T3paraCxX001</opc:DisplayName>
+			</opc:Object>
+		</opc:Children>
+
+		<!-- Conecta a instância a ObjectsFolder -->
+		<opc:References>
+			<opc:Reference IsInverse="true">
+				<opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+				<opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+			</opc:Reference>
+		</opc:References>
+
+	</opc:Object>
+</opc:ModelDesign>

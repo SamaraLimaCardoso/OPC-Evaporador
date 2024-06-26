@@ -2,7 +2,6 @@
 using Opc.Ua.Client;
 using Opc.Ua.Configuration;
 using System;
-using System.Timers;
 using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -13,7 +12,6 @@ namespace EvaporadorPlantaCliente
     {
         private Session session;
         private ApplicationConfiguration appConfiguration; // Adiciona como campo de classe   
-        private System.Timers.Timer timer;
 
         // IDs dos nós e chaves correspondentes
         //parametros do servidor
@@ -35,31 +33,22 @@ namespace EvaporadorPlantaCliente
         public string newLT001;
         public string newTT001;
 
-
-
         public Form1()
         {
             InitializeComponent();
             // Associe o evento ao botão
             buttonConnect.Click += buttonConnect_Click;
-
-            // Inicializa o Timer com intervalo de 1 milissegundo
-            timer = new System.Timers.Timer(1);
-            timer.Elapsed += AtualizaTodaHora; // Associa o método AtualizaTodaHora ao evento Elapsed
-
-            // Configura o evento que será acionado a cada intervalo do Timer
-            timer.Elapsed += AtualizaTodaHora;
-
         }
 
         // Botão de conectar
         private void buttonConnect_Click(object sender, EventArgs e)
         {
             upcua_Inicia();
+            inicializacaoEscrita();
             ReadVar();
             ReadNovasVar();
             // Inicia o Timer
-            timer.Start();
+            timer1.Start();
         }
 
         /// <summary>
@@ -202,83 +191,153 @@ namespace EvaporadorPlantaCliente
         /// <returns></returns>
         /// 
 
-        void AtualizaTodaHora(object sender, ElapsedEventArgs e)
+        void ReadVar()
         {
-            Console.WriteLine("AtualizaTodaHora....................................");
-            ReadNovasVar();
-
+            Console.WriteLine("Atualizei....................................");
             if (SC001 != newSC001)
             {
-                sc001.Text = session.ReadValue(NodeId.Parse("ns=2;i=285")).ToString();
-                SC001 = session.ReadValue(NodeId.Parse("ns=2;i=285")).ToString();
+                try
+                {
+                    var SC001 = session.ReadValue(NodeId.Parse("ns=2;i=301"));
+                    sc001.Text = SC001.Value != null ? SC001.Value.ToString() : "null";
+                    //sc001.ForeColor = System.Drawing.Color.Green;
+                }
+                catch (Exception ex)
+                {
+                    sc001.ForeColor = System.Drawing.Color.Red;
+                    MessageBox.Show($"Erro ao realizar leitura: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             if (SC002 != newSC002)
             {
-                sc002.Text = session.ReadValue(NodeId.Parse("ns=2;i=285")).ToString();
-                SC002 = session.ReadValue(NodeId.Parse("ns=2;i=285")).ToString();
+                try
+                {
+                    var SC002 = session.ReadValue(NodeId.Parse("ns=2;i=344"));
+                    sc002.Text = SC002.Value != null ? SC002.Value.ToString() : "null";
+                }
+                catch (Exception ex)
+                {
+                    sc002.ForeColor = System.Drawing.Color.Red;
+                    MessageBox.Show($"Erro ao realizar leitura: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             if (SC003 != newSC003)
             {
-                sc003.Text = session.ReadValue(NodeId.Parse("ns=2;i=320")).ToString();
-                SC003 = session.ReadValue(NodeId.Parse("ns=2;i=320")).ToString();
+                try
+                {
+                    var aux = session.ReadValue(NodeId.Parse("ns=2;i=309"));
+                    sc003.Text = aux.Value != null ? aux.Value.ToString() : "null";
+                }
+                catch (Exception ex)
+                {
+                    sc003.ForeColor = System.Drawing.Color.Red;
+                    MessageBox.Show($"Erro ao realizar leitura: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             if (FV001 != newFV001)
             {
-                fv001.Text = session.ReadValue(NodeId.Parse("ns=2;i=307")).ToString();
-                FV001 = session.ReadValue(NodeId.Parse("ns=2;i=307")).ToString();
+                try
+                {
+                    var aux = session.ReadValue(NodeId.Parse("ns=2;i=331"));
+                    fv001.Text = aux.Value != null ? aux.Value.ToString() : "null";
+                }
+                catch (Exception ex)
+                {
+                    fv001.ForeColor = System.Drawing.Color.Red;
+                    MessageBox.Show($"Erro ao realizar leitura: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             if (FV002 != newFV002)
             {
-                fv002.Text = session.ReadValue(NodeId.Parse("ns=2;i=293")).ToString();
-                FV002 = session.ReadValue(NodeId.Parse("ns=2;i=293")).ToString();
+                try
+                {
+                    var SC001 = session.ReadValue(NodeId.Parse("ns=2;i=317"));
+                    fv002.Text = SC001.Value != null ? SC001.Value.ToString() : "null";
+                }
+                catch (Exception ex)
+                {
+                    fv002.ForeColor = System.Drawing.Color.Red;
+                    MessageBox.Show($"Erro ao realizar leitura: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             if (TV001 != newTV001)
             {
-                tv001.Text = session.ReadValue(NodeId.Parse("ns=2;i=254")).ToString();
-                TV001 = session.ReadValue(NodeId.Parse("ns=2;i=254")).ToString();
+                try
+                {
+                    var aux = session.ReadValue(NodeId.Parse("ns=2;i=270"));
+                    tv001.Text = aux.Value != null ? aux.Value.ToString() : "null";
+                }
+                catch (Exception ex)
+                {
+                    tv001.ForeColor = System.Drawing.Color.Red;
+                    MessageBox.Show($"Erro ao realizar leitura: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             if (LT001 != newLT001)
             {
-                LT001T1.Text = session.ReadValue(NodeId.Parse("ns=2;i=276")).ToString();
-                LT001T2.Text = session.ReadValue(NodeId.Parse("ns=2;i=276")).ToString();
-                LT001T3.Text = session.ReadValue(NodeId.Parse("ns=2;i=276")).ToString();
-                LT001T4.Text = session.ReadValue(NodeId.Parse("ns=2;i=276")).ToString();
-                LT001T5.Text = session.ReadValue(NodeId.Parse("ns=2;i=276")).ToString();
-                LT001 = session.ReadValue(NodeId.Parse("ns=2;i=276")).ToString();
+                try
+                {
+                    var LT0011 = session.ReadValue(NodeId.Parse("ns=2;i=292"));
+                    LT001T1.Text = LT0011.Value != null ? LT0011.Value.ToString() : "null";
+                    LT001T2.Text = LT0011.Value != null ? LT0011.Value.ToString() : "null";
+                    LT001T3.Text = LT0011.Value != null ? LT0011.Value.ToString() : "null";
+                    LT001T4.Text = LT0011.Value != null ? LT0011.Value.ToString() : "null";
+                    LT001T5.Text = LT0011.Value != null ? LT0011.Value.ToString() : "null";
+                }
+                catch (Exception ex)
+                {
+                    LT001T1.ForeColor = System.Drawing.Color.Red;
+                    LT001T2.ForeColor = System.Drawing.Color.Red;
+                    LT001T3.ForeColor = System.Drawing.Color.Red;
+                    LT001T4.ForeColor = System.Drawing.Color.Red;
+                    LT001T5.ForeColor = System.Drawing.Color.Red;
+                    MessageBox.Show($"Erro ao realizar leitura: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             if (TT001 != newTT001)
             {
-                TT0011.Text = session.ReadValue(NodeId.Parse("ns=2;i=246")).ToString();
-                TT001 = session.ReadValue(NodeId.Parse("ns=2;i=246")).ToString();
+                try
+                {
+                    var aux = session.ReadValue(NodeId.Parse("ns=2;i=262"));
+                    TT0011.Text = aux.Value != null ? aux.Value.ToString() : "null";
+                }
+                catch (Exception ex)
+                {
+                    TT0011.ForeColor = System.Drawing.Color.Red;
+                    MessageBox.Show($"Erro ao realizar leitura: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            Thread.Sleep(100); // Atualiza a cada intervalo de tempo
         }
-
-        void ReadVar()
+        void ReadVar1()
         {
-            Console.WriteLine("LIIIIIIIIIIIIIIIIIIIIIII....................................");
-            SC001 = session.ReadValue(NodeId.Parse("ns=2;i=285")).ToString();
-            SC002 = session.ReadValue(NodeId.Parse("ns=2;i=285")).ToString();
-            SC003 = session.ReadValue(NodeId.Parse("ns=2;i=320")).ToString();
-            FV001 = session.ReadValue(NodeId.Parse("ns=2;i=307")).ToString();
-            FV002 = session.ReadValue(NodeId.Parse("ns=2;i=293")).ToString();
-            TV001 = session.ReadValue(NodeId.Parse("ns=2;i=254")).ToString();
-            LT001 = session.ReadValue(NodeId.Parse("ns=2;i=276")).ToString();
-            TT001 = session.ReadValue(NodeId.Parse("ns=2;i=246")).ToString();
+            SC001 = session.ReadValue(NodeId.Parse("ns=2;i=301")).ToString();
+            SC002 = session.ReadValue(NodeId.Parse("ns=2;i=344")).ToString();
+            SC003 = session.ReadValue(NodeId.Parse("ns=2;i=309")).ToString();
+            FV001 = session.ReadValue(NodeId.Parse("ns=2;i=331")).ToString();
+            FV002 = session.ReadValue(NodeId.Parse("ns=2;i=317")).ToString();
+            TV001 = session.ReadValue(NodeId.Parse("ns=2;i=270")).ToString();
+            LT001 = session.ReadValue(NodeId.Parse("ns=2;i=292")).ToString();
+            TT001 = session.ReadValue(NodeId.Parse("ns=2;i=262")).ToString();
         }
         void ReadNovasVar()
         {
-            Console.WriteLine("LIIIIIIIIIIIIIIIIIIIIIII........AAAAAAAAA............................");
-            newSC001 = session.ReadValue(NodeId.Parse("ns=2;i=285")).ToString();
-            newSC002 = session.ReadValue(NodeId.Parse("ns=2;i=285")).ToString();
-            newSC003 = session.ReadValue(NodeId.Parse("ns=2;i=320")).ToString();
-            newFV001 = session.ReadValue(NodeId.Parse("ns=2;i=307")).ToString();
-            newFV002 = session.ReadValue(NodeId.Parse("ns=2;i=293")).ToString();
-            newTV001 = session.ReadValue(NodeId.Parse("ns=2;i=254")).ToString();
-            newLT001 = session.ReadValue(NodeId.Parse("ns=2;i=276")).ToString();
-            newTT001 = session.ReadValue(NodeId.Parse("ns=2;i=246")).ToString();
+            newSC001 = session.ReadValue(NodeId.Parse("ns=2;i=301")).ToString();
+            newSC002 = session.ReadValue(NodeId.Parse("ns=2;i=344")).ToString();
+            newSC003 = session.ReadValue(NodeId.Parse("ns=2;i=309")).ToString();
+            newFV001 = session.ReadValue(NodeId.Parse("ns=2;i=331")).ToString();
+            newFV002 = session.ReadValue(NodeId.Parse("ns=2;i=317")).ToString();
+            newTV001 = session.ReadValue(NodeId.Parse("ns=2;i=270")).ToString();
+            newLT001 = session.ReadValue(NodeId.Parse("ns=2;i=292")).ToString();
+            newTT001 = session.ReadValue(NodeId.Parse("ns=2;i=262")).ToString();
             Console.WriteLine(newSC001);
         }
+
+
+        /// <summary>
+        /// ESCRITAAAA DAS VARIAVEIS 
+        /// </summary>
+        /// <returns></returns>
+        /// 
 
         public void WriteValue(string nodeId, object value)
         {
@@ -305,11 +364,12 @@ namespace EvaporadorPlantaCliente
 
                 if (StatusCode.IsGood(results[0]))
                 {
-                    MessageBox.Show("Write succeeded!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Escrito com Sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Write failed!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Escrita Falhou!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
             }
             catch (Exception ex)
@@ -322,15 +382,99 @@ namespace EvaporadorPlantaCliente
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                // Aqui você pode executar a lógica desejada quando o Enter é pressionado
-                MessageBox.Show("Enter pressionado!");
-                var value = textBox1.Text;
+                var NodeId = "ns=2;i=301";
+                var value = SC001T.Text;
                 double valorDouble = double.Parse(value);
-                WriteValue("ns=2;i=285", valorDouble);
-                // Por exemplo, chamar um método para processar o texto
-
+                WriteValue(NodeId, valorDouble);
             }
         }
+        private void SC002T_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var NodeId = "ns=2;i=344";
+                var value = SC002T.Text;
+                double valorDouble = double.Parse(value);
+                WriteValue(NodeId, valorDouble);
+            }
+        }
+        private void SC003T_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var NodeId = "ns=2;i=309";
+                var value = SC003T.Text;
+                double valorDouble = double.Parse(value);
+                WriteValue(NodeId, valorDouble);        
+            }
+        }
+        private void FV001T_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var NodeId = "ns=2;i=331";
+                var value = FV001T.Text;
+                double valorDouble = double.Parse(value);
+                WriteValue(NodeId, valorDouble);
+            }
+        }
+        private void FV002T_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var NodeId = "ns=2;i=317";
+                var value = FV002T.Text;
+                double valorDouble = double.Parse(value);
+                WriteValue(NodeId, valorDouble);
+            }
+        }
+        private void TV001T_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var NodeId = "ns=2;i=270";
+                var value = TV001T.Text;
+                double valorDouble = double.Parse(value);
+                WriteValue(NodeId, valorDouble);
+            }
+        }
+
+        void inicializacaoEscrita()
+        {
+            try
+            {
+                //
+                double valorDouble = 0;
+                var NodeId = "ns=2;i=301";
+                WriteValue(NodeId, valorDouble);
+                NodeId = "ns=2;i=344";
+                WriteValue(NodeId, valorDouble);
+                NodeId = "ns=2;i=309";
+                WriteValue(NodeId, valorDouble);
+                NodeId = "ns=2;i=331";
+                WriteValue(NodeId, valorDouble);
+                NodeId = "ns=2;i=317";
+                WriteValue(NodeId, valorDouble);
+                NodeId = "ns=2;i=270";
+                WriteValue(NodeId, valorDouble);
+                NodeId = "ns=2;i=292";
+                WriteValue(NodeId, valorDouble);
+                NodeId = "ns=2;i=262";
+                WriteValue(NodeId, valorDouble);
+                MessageBox.Show("Inicializado com Sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Inicialização Falhou!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }      
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ReadVar();
+        }
+
+
     }
 
 }

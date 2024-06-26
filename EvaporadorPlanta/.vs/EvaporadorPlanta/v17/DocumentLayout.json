@@ -1,0 +1,183 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|c:\\users\\samara cardoso\\source\\repos\\evaporadorplanta\\evaporadorplanta\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\form1.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\form1.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\evaporadorplantasever.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\evaporadorplantasever.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\evaporadorplantanodemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\evaporadorplantanodemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\evaporadorplanta-constants.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\evaporadorplanta-constants.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\evaporadorplantaserverconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\evaporadorplantaserverconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\evaporadorplanta\\evaporadorplanta.config.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{76E3BD6B-E65A-4958-A710-23C0B5F308C4}|EvaporadorPlanta\\EvaporadorPlanta.csproj|solutionrelative:evaporadorplanta\\evaporadorplanta.config.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Form1.cs",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\Form1.cs",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Form1.cs [Design]",
+              "RelativeToolTip": "EvaporadorPlanta\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:39:20.972Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.resx",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Form1.resx",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\Form1.resx",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Form1.resx",
+              "RelativeToolTip": "EvaporadorPlanta\\Form1.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-06-26T17:40:52.731Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Form1.Designer.cs",
+              "RelativeToolTip": "EvaporadorPlanta\\Form1.Designer.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAIwD4AAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T18:20:04.162Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Program.cs",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\Program.cs",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Program.cs",
+              "RelativeToolTip": "EvaporadorPlanta\\Program.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAgwDEAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:42:40.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EvaporadorPlantaNodeManager.cs",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\EvaporadorPlantaNodeManager.cs",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\EvaporadorPlantaNodeManager.cs",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\EvaporadorPlantaNodeManager.cs",
+              "RelativeToolTip": "EvaporadorPlanta\\EvaporadorPlantaNodeManager.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAAACgAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:42:14.881Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Form1.cs",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\Form1.cs",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\Form1.cs",
+              "RelativeToolTip": "EvaporadorPlanta\\Form1.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAAAnwDUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:50:30.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "evaporadorplanta-constants.ts",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\evaporadorplanta-constants.ts",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\evaporadorplanta-constants.ts",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\evaporadorplanta-constants.ts",
+              "RelativeToolTip": "EvaporadorPlanta\\evaporadorplanta-constants.ts",
+              "ViewState": "AQIAACUAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-06-18T12:53:46.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EvaporadorPlantaServerConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\EvaporadorPlantaServerConfiguration.cs",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\EvaporadorPlantaServerConfiguration.cs",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\EvaporadorPlantaServerConfiguration.cs",
+              "RelativeToolTip": "EvaporadorPlanta\\EvaporadorPlantaServerConfiguration.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAADwvxgAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:45:56.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EvaporadorPlantaSever.cs",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\EvaporadorPlantaSever.cs",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\EvaporadorPlantaSever.cs",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\EvaporadorPlantaSever.cs",
+              "RelativeToolTip": "EvaporadorPlanta\\EvaporadorPlantaSever.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAgwCwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:43:50.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EvaporadorPlanta.Config.xml",
+              "DocumentMoniker": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\EvaporadorPlanta.Config.xml",
+              "RelativeDocumentMoniker": "EvaporadorPlanta\\EvaporadorPlanta.Config.xml",
+              "ToolTip": "C:\\Users\\Samara Cardoso\\source\\repos\\EvaporadorPlanta\\EvaporadorPlanta\\EvaporadorPlanta.Config.xml",
+              "RelativeToolTip": "EvaporadorPlanta\\EvaporadorPlanta.Config.xml",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAAAFQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2024-06-20T19:16:00.995Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
