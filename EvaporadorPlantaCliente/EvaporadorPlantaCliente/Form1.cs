@@ -11,10 +11,9 @@ namespace EvaporadorPlantaCliente
     public partial class Form1 : Form
     {
         private Session session;
-        private ApplicationConfiguration appConfiguration; // Adiciona como campo de classe   
+        private ApplicationConfiguration appConfiguration;  
 
-        // IDs dos nós e chaves correspondentes
-        //parametros do servidor
+        //definição dos parametros para comparação
         public string SC001;
         public string SC002;
         public string SC003;
@@ -23,7 +22,7 @@ namespace EvaporadorPlantaCliente
         public string TV001;
         public string LT001;
         public string TT001;
-        //parametros do servidor
+        //
         public string newSC001;
         public string newSC002;
         public string newSC003;
@@ -33,6 +32,7 @@ namespace EvaporadorPlantaCliente
         public string newLT001;
         public string newTT001;
 
+        public bool Conectado = false;
         public Form1()
         {
             InitializeComponent();
@@ -43,16 +43,17 @@ namespace EvaporadorPlantaCliente
         // Botão de conectar
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            
+
             if (upcua_Inicia())
             {
+                Conectado = true;
                 inicializacaoEscrita();
                 ReadVar();
                 ReadNovasVar();
                 // Inicia o Timer
                 timer1.Start();
             }
-            
+
         }
 
         /// <summary>
@@ -166,27 +167,20 @@ namespace EvaporadorPlantaCliente
 
                 // Obter o endpoint do textBox1
                 string server_address = textBox1.Text;
-
-                if (string.IsNullOrWhiteSpace(server_address))
-                {
-                    MessageBox.Show("Por favor, insira um endpoint válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
-                }
                 // Chama a configuração e criação da sessão OPC UA
                 appConfiguration = OpcUa_Client_Configuration();
                 EndpointDescription endpoint = CoreClientUtils.SelectEndpoint(server_address, useSecurity: false);
                 session = OpcUa_Create_Session(appConfiguration, endpoint);
 
-                // Mudar a cor do texto do textBox1 para verde se a conexão for bem-sucedida
+                // Mudar a cor do texto do para verde e apresenta pop-up se a conexão for bem-sucedida
                 textBox1.ForeColor = System.Drawing.Color.Green;
                 MessageBox.Show("Conexão estabelecida com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             catch (Exception ex)
             {
-                textBox1.ForeColor = System.Drawing.Color.Red;  // Mudar a cor do texto para vermelho se a conexão falhar
+                textBox1.ForeColor = System.Drawing.Color.Red;  // Mudar a cor do texto para vermelho e apresenta pop-up se a conexão falhar
                 MessageBox.Show($"Erro ao conectar ao servidor OPC UA: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine($"Erro: {ex.Message}");
                 return false;
             }
         }
@@ -196,10 +190,9 @@ namespace EvaporadorPlantaCliente
         /// </summary>
         /// <returns></returns>
         /// 
-
         void ReadVar()
         {
-            Console.WriteLine("Atualizei....................................");
+            ReadNovasVar();
             if (SC001 != newSC001)
             {
                 try
@@ -335,7 +328,6 @@ namespace EvaporadorPlantaCliente
             newTV001 = session.ReadValue(NodeId.Parse("ns=2;i=270")).ToString();
             newLT001 = session.ReadValue(NodeId.Parse("ns=2;i=292")).ToString();
             newTT001 = session.ReadValue(NodeId.Parse("ns=2;i=262")).ToString();
-            Console.WriteLine(newSC001);
         }
 
 
@@ -347,8 +339,7 @@ namespace EvaporadorPlantaCliente
 
         public void WriteValue(string nodeId, object value)
         {
-            try
-            {
+            try{
                 WriteValue writeValue = new WriteValue
                 {
                     NodeId = new NodeId(nodeId),
@@ -361,21 +352,15 @@ namespace EvaporadorPlantaCliente
                         SourceTimestamp = DateTime.MinValue
                     }
                 };
-
                 WriteValueCollection valuesToWrite = new WriteValueCollection { writeValue };
                 StatusCodeCollection results;
                 DiagnosticInfoCollection diagnosticInfos;
 
                 session.Write(null, valuesToWrite, out results, out diagnosticInfos);
 
-                if (StatusCode.IsGood(results[0]))
-                {
-                    //MessageBox.Show("Escrito com Sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
+                if (!StatusCode.IsGood(results[0]))
                 {
                     MessageBox.Show("Escrita Falhou!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 }
             }
             catch (Exception ex)
@@ -388,60 +373,161 @@ namespace EvaporadorPlantaCliente
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var NodeId = "ns=2;i=301";
-                var value = SC001T.Text;
-                double valorDouble = double.Parse(value);
-                WriteValue(NodeId, valorDouble);
+                if (Conectado == true)
+                {
+                    var NodeId = "ns=2;i=301";
+                    var value = SC001T.Text;
+                    double valorDouble;
+                    if (double.TryParse(value, out valorDouble))
+                    {
+                        WriteValue(NodeId, valorDouble);
+                    }
+                    else
+                    {
+                        // Falha na conversão, exibir mensagem de erro
+                        MessageBox.Show("Por favor, insira um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // não conectado
+                    MessageBox.Show("Por favor, conecte-se ao servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
             }
         }
         private void SC002T_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var NodeId = "ns=2;i=344";
-                var value = SC002T.Text;
-                double valorDouble = double.Parse(value);
-                WriteValue(NodeId, valorDouble);
+                if (Conectado == true)
+                {
+                    var NodeId = "ns=2;i=344";
+                    var value = SC002T.Text;
+                    double valorDouble;
+                    if (double.TryParse(value, out valorDouble))
+                    {
+                        WriteValue(NodeId, valorDouble);
+                    }
+                    else
+                    {
+                        // Falha na conversão, exibir mensagem de erro
+                        MessageBox.Show("Por favor, insira um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // não conectado
+                    MessageBox.Show("Por favor, conecte-se ao servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
         }
         private void SC003T_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var NodeId = "ns=2;i=309";
-                var value = SC003T.Text;
-                double valorDouble = double.Parse(value);
-                WriteValue(NodeId, valorDouble);        
+                if (Conectado == true)
+                {
+                    var NodeId = "ns=2;i=309";
+                    var value = SC003T.Text;
+                    double valorDouble;
+                    if (double.TryParse(value, out valorDouble))
+                    {
+                        WriteValue(NodeId, valorDouble);
+                    }
+                    else
+                    {
+                        // Falha na conversão, exibir mensagem de erro
+                        MessageBox.Show("Por favor, insira um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // não conectado
+                    MessageBox.Show("Por favor, conecte-se ao servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void FV001T_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var NodeId = "ns=2;i=331";
-                var value = FV001T.Text;
-                double valorDouble = double.Parse(value);
-                WriteValue(NodeId, valorDouble);
+                if (Conectado == true) 
+                {
+                    var NodeId = "ns=2;i=331";
+                    var value = FV001T.Text;
+                    double valorDouble;
+                    if (double.TryParse(value, out valorDouble))
+                    {
+                        WriteValue(NodeId, valorDouble);
+                    }
+                    else
+                    {
+                        // Falha na conversão, exibir mensagem de erro
+                        MessageBox.Show("Por favor, insira um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // não conectado
+                    MessageBox.Show("Por favor, conecte-se ao servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
         private void FV002T_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var NodeId = "ns=2;i=317";
-                var value = FV002T.Text;
-                double valorDouble = double.Parse(value);
-                WriteValue(NodeId, valorDouble);
+                if (Conectado == true)
+                {
+                    var NodeId = "ns=2;i=317";
+                    var value = FV002T.Text;
+                    double valorDouble;
+                    if (double.TryParse(value, out valorDouble))
+                    {
+                        WriteValue(NodeId, valorDouble);
+                    }
+                    else
+                    {
+                        // Falha na conversão, exibir mensagem de erro
+                        MessageBox.Show("Por favor, insira um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // não conectado
+                    MessageBox.Show("Por favor, conecte-se ao servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void TV001T_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var NodeId = "ns=2;i=270";
-                var value = TV001T.Text;
-                double valorDouble = double.Parse(value);
-                WriteValue(NodeId, valorDouble);
+                if (Conectado == true)
+                {
+                    var NodeId = "ns=2;i=270";
+                    var value = TV001T.Text;
+                    double valorDouble;
+                    if (double.TryParse(value, out valorDouble))
+                    {
+                        WriteValue(NodeId, valorDouble);
+                    }
+                    else
+                    {
+                        // Falha na conversão, exibir mensagem de erro
+                        MessageBox.Show("Por favor, insira um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // não conectado
+                    MessageBox.Show("Por favor, conecte-se ao servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
         }
 
@@ -472,8 +558,14 @@ namespace EvaporadorPlantaCliente
             catch (Exception ex)
             {
                 MessageBox.Show("Inicialização Falhou!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }      
+            }
         }
+
+        /// <summary>
+        /// TEMPORIZADOR
+        /// </summary>
+        /// <returns></returns>
+        /// 
 
         private void timer1_Tick(object sender, EventArgs e)
         {
