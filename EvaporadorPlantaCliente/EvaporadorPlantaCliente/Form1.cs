@@ -43,12 +43,16 @@ namespace EvaporadorPlantaCliente
         // Botão de conectar
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            upcua_Inicia();
-            inicializacaoEscrita();
-            ReadVar();
-            ReadNovasVar();
-            // Inicia o Timer
-            timer1.Start();
+            
+            if (upcua_Inicia())
+            {
+                inicializacaoEscrita();
+                ReadVar();
+                ReadNovasVar();
+                // Inicia o Timer
+                timer1.Start();
+            }
+            
         }
 
         /// <summary>
@@ -154,7 +158,7 @@ namespace EvaporadorPlantaCliente
                 null
             ).GetAwaiter().GetResult();
         }
-        private void upcua_Inicia()
+        private bool upcua_Inicia()
         {
             try
             {
@@ -166,7 +170,7 @@ namespace EvaporadorPlantaCliente
                 if (string.IsNullOrWhiteSpace(server_address))
                 {
                     MessageBox.Show("Por favor, insira um endpoint válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    
                 }
                 // Chama a configuração e criação da sessão OPC UA
                 appConfiguration = OpcUa_Client_Configuration();
@@ -176,12 +180,14 @@ namespace EvaporadorPlantaCliente
                 // Mudar a cor do texto do textBox1 para verde se a conexão for bem-sucedida
                 textBox1.ForeColor = System.Drawing.Color.Green;
                 MessageBox.Show("Conexão estabelecida com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
             }
             catch (Exception ex)
             {
                 textBox1.ForeColor = System.Drawing.Color.Red;  // Mudar a cor do texto para vermelho se a conexão falhar
                 MessageBox.Show($"Erro ao conectar ao servidor OPC UA: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine($"Erro: {ex.Message}");
+                return false;
             }
         }
 
