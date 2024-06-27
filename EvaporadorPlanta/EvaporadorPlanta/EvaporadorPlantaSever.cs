@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Opc.Ua;
 using Opc.Ua.Server;
 
@@ -14,17 +11,17 @@ namespace EvaporadorPlanta
         //Usa o conceito de gerenciador de nó, por este motivo precisamos de um metodo para criar um gerenciador de nó
         protected override MasterNodeManager CreateMasterNodeManager(IServerInternal server, ApplicationConfiguration configuration)
         {
-            Utils.Trace("Creating the Node Managers.");
+            Utils.Trace("Creating the Node Managers.");// mensagem de rastreamento indicando a criação dos gerenciadores de nó.
 
             List<INodeManager> nodeManagers = new List<INodeManager>();
 
-            // create the custom node managers.
+            // Cria um gerenciador de nó personalizado (EvaporadorPlantaNodeManager) e o adiciona à lista de gerenciadores de nó.
             nodeManagers.Add(new EvaporadorPlantaNodeManager(server, configuration));
 
-            // create master node manager.
+            // Retorna um novo MasterNodeManager configurado com o servidor (server), a configuração (configuration) e os gerenciadores de nó criados.
             return new MasterNodeManager(server, configuration, null, nodeManagers.ToArray());
         }
-        //metodo para especificar as propriedades do servidor
+        //metodo para Carregar e retornar as propriedades do servidor OPC UA.
         protected override ServerProperties LoadServerProperties()
         {
             ServerProperties properties = new ServerProperties();
